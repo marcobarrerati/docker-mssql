@@ -4,7 +4,7 @@
 1. crear ssl 
 
 ```sh
-openssl req -newkey rsa:2048 -nodes -keyout server.key -x509 -days 365 -out server.crt
+openssl req -newkey rsa:2048 -nodes -keyout server-mssql.key -x509 -days 365 -out server-mssql.crt
 ```
 
 2. levantar docker 

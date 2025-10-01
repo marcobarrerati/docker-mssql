@@ -1,22 +1,25 @@
-version: '3.9'
+# docker-compose.yml
 
 services:
-  sqlserver2022:
-    image: mcr.microsoft.com/mssql/server:2022-latest
+  mssql-2019:
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    platform: linux/amd64
+    container_name: mssql-2019
     environment:
-      SA_PASSWORD: PASSWORD
+      SA_PASSWORD: _PASSWORD_
       ACCEPT_EULA: Y
       MSSQL_PID: Developer
       MSSQL_MEMORY_LIMIT_MB: 4096
-      MSSQL_TLS_CERT: /etc/ssl/certs/server.crt
-      MSSQL_TLS_KEY: /etc/ssl/private/server.key
-      MSSQL_TLS_VERIFY: 0
+      MSSQL_TLS_CERT: /etc/ssl/certs/server-mssql.crt
+      MSSQL_TLS_KEY: /etc/ssl/private/server-mssql.key
+      MSSQL_TLS_PROTOCOLS: 1.2
     ports:
-      - '1433:1433'
+      - "1433:1433"
     volumes:
-      - ./data-sqlserver2022:/var/opt/mssql/data
-      - ./server.crt:/etc/ssl/certs/server.crt
-      - ./server.key:/etc/ssl/private/server.key:ro
+      - data-sqlserver-2019:/var/opt/mssql/data
+      - ./server-mssql.crt:/etc/ssl/certs/server-mssql.crt:ro
+      - ./server-mssql.key:/etc/ssl/private/server-mssql.key:ro
+    restart: unless-stopped
 
 volumes:
-  data-sqlserver2022:
+  data-sqlserver-2019:
