@@ -1,0 +1,28 @@
+# Variables de entorno
+.env
+
+# Datos de SQL Server
+data/
+
+# Logs
+*.log
+
+# Backups (si los agregas después)
+backups/
+
+# Certificados (por si los agregas en el futuro)
+*.key
+*.crt
+*.pem
+*.pfx
+
+# Sistema operativo
+.DS_Store
+Thumbs.db
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~

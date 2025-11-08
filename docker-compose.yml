@@ -6,20 +6,15 @@ services:
     platform: linux/amd64
     container_name: mssql-2019
     environment:
-      SA_PASSWORD: _PASSWORD_
+      SA_PASSWORD: ${SA_PASSWORD}
       ACCEPT_EULA: Y
       MSSQL_PID: Developer
       MSSQL_MEMORY_LIMIT_MB: 4096
-      MSSQL_TLS_CERT: /etc/ssl/certs/server-mssql.crt
-      MSSQL_TLS_KEY: /etc/ssl/private/server-mssql.key
-      MSSQL_TLS_PROTOCOLS: 1.2
     ports:
       - "1433:1433"
     volumes:
-      - data-sqlserver-2019:/var/opt/mssql/data
-      - ./server-mssql.crt:/etc/ssl/certs/server-mssql.crt:ro
-      - ./server-mssql.key:/etc/ssl/private/server-mssql.key:ro
+      - ./data:/var/opt/mssql/data
     restart: unless-stopped
 
 volumes:
-  data-sqlserver-2019:
+  data:
